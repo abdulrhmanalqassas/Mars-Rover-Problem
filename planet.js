@@ -18,11 +18,11 @@ function stage(location, commands , obstacles=[]) {
   var command = commands[index];
   var newlocation = rover(command, location);
   let newPosition = new position(newlocation.x,newlocation.y,newlocation.dir)
-  let curintPosition = new position(location.x,location.y,location.dir)
+  let currentPosition = new position(location.x,location.y,location.dir)
   if (isObstacle(newlocation,obstacles)) {
     index = -1;
     // return current location and ignore newlocation
-    return curintPosition.toString() + " STOPED"
+    return currentPosition.toString() + " STOPED"
   }
   if (index > commands.length) {
     index = -1;
