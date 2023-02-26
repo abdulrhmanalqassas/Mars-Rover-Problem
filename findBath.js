@@ -1,32 +1,8 @@
 const { isObstacle } = require("./planet");
 const { rover } = require("./rover");
+const {Queue} =  require("./lib");
 
-class Queue {
-  constructor() {
-    this.items = {};
-    this.frontIndex = 0;
-    this.backIndex = 0;
-  }
-  enqueue(item) {
-    this.items[this.backIndex] = item;
-    this.backIndex++;
-    return item + " inserted";
-  }
-  dequeue() {
-    const item = this.items[this.frontIndex];
-    delete this.items[this.frontIndex];
-    this.frontIndex++;
-    return item;
-  }
-  peek() {
-    return this.items[this.frontIndex];
-  }
-  get printQueue() {
-    return this.items;
-  }
-}
-
-function findBath(source, destination) {
+function findBath(source, destination , obstacles) {
   let q = new Queue();
   let explored = new Set();
   let memo = new Map();
@@ -43,10 +19,10 @@ function findBath(source, destination) {
     
     if (( t.x >= 180 || t.x <= -180 ) & ( t.y >= 90 || t.y <= -90 )) {
       console.log(t.x, t.y);
-      return false + " max limit of mars ";
+      return false + " max limit of mars no bath can be found ";
     }
 
-    let edges = generateEdges(t, memo.get(JSON.stringify(t)));
+    let edges = generateEdges(t, memo.get(JSON.stringify(t)),obstacles);
     edges
       .filter((edge) => {
         return !explored.has(JSON.stringify(edge.node));
@@ -61,14 +37,14 @@ function findBath(source, destination) {
   return false;
 }
 
-function generateEdges(source, path) {
+function generateEdges(source, path ,obstacles) {
   return [
     { node: rover("R", source), path: path.concat("R") },
     { node: rover("L", source), path: path.concat("L") },
     { node: rover("F", source), path: path.concat("F") },
     { node: rover("B", source), path: path.concat("B") },
   ].filter((elem) => {
-    return !isObstacle(elem.node);
+    return !isObstacle(elem.node,obstacles);
   });
 }
 
