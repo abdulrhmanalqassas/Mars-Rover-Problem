@@ -1,0 +1,14 @@
+{
+  "name": "penta-b",
+  "version": "1.0.0",
+  "description": "mars rover problem task",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.4.3"
+  }
+}
