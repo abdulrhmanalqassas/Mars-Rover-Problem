@@ -3,12 +3,17 @@ const { rover } = require("./rover");
 const {Queue} =  require("./lib");
 
 function findPath(source, destination , obstacles=[]) {
+  boundaries = {
+   maxX: Math.abs(destination.x)+180,
+   maxY :  Math.abs(destination.y)+90
+  }
   let q = new Queue();
   let explored = new Set();
   let memo = new Map();
-  memo.set(JSON.stringify(source), " ");
+  let stringSource = JSON.stringify(source)
+  memo.set(stringSource, " ");
   q.enqueue(source);
-  explored.add(JSON.stringify(source));
+  explored.add(stringSource);
   while (q.items) {
     let t = q.dequeue();
     explored.add(JSON.stringify(t));
@@ -17,7 +22,7 @@ function findPath(source, destination , obstacles=[]) {
       return true  +" path is:"+ memo.get(JSON.stringify(t)) + " end at: " + JSON.stringify(t);
     }
     
-    if (( t.x >= 180 || t.x <= -180 ) & ( t.y >= 90 || t.y <= -90 )) {
+    if (( t.x >= boundaries.maxX || t.x <= -boundaries.maxX) & ( t.y >= boundaries.maxY || t.y <= -boundaries.maxY )) {
       console.log(t.x, t.y);
       return false + " max limit of mars no bath can be found ";
     }
