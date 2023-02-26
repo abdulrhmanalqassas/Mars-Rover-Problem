@@ -19,7 +19,7 @@ function findPath(source, destination , obstacles=[]) {
     explored.add(JSON.stringify(t));
 
     if (t.x == destination.x && t.y == destination.y) {
-      return true  +" path is:"+ memo.get(JSON.stringify(t)) + " end at: " + JSON.stringify(t);
+      return memo.get(JSON.stringify(t)).trim();
     }
     
     if (( t.x >= boundaries.maxX || t.x <= -boundaries.maxX) & ( t.y >= boundaries.maxY || t.y <= -boundaries.maxY )) {

@@ -2,8 +2,8 @@ const { stage } = require("./planet");
 
 describe("planet tests", () => {
   test("stage with normal act ", () => {
-    let testStage = stage({ x: 1, y: -2, dir: "N" }, "FFFFFFF");
-    let expected ="(1, 5) NORTH"
+    let testStage = stage({ x: 1, y: 1, dir: "N" }, "FFFFFFF");
+    let expected ="(1, 8) NORTH"
     expect(testStage).toStrictEqual(expected);
 
   });
@@ -16,5 +16,8 @@ describe("planet tests", () => {
     expect(() => stage({ x: 1, y: -2, dir: "N" },"X",[[1,2],[2,3]])).toThrow("you are using bad command");
     expect(() =>stage({ x: 1, y: -2, dir: "N" },"X",[[1,2],[2,3]])).toThrow(Error);
   }); 
-  
+  test("stage with Error in input", () => {
+    expect(() => stage({ x: 1, y: "l", dir: "L" },"F",[[1,2],[2,3]])).toThrow("wrong input");
+    expect(() =>stage({ x: 1, y: "l", dir: "L" },"F",[[1,2],[2,3]])).toThrow(Error);
+  }); 
 });

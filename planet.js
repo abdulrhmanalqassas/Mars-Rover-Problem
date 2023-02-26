@@ -15,6 +15,7 @@ let index = -1;
 // else return nextPos
 
 function stage(location, commands , obstaclesArr=[]) {
+  checkInputFormat(location.x,location.y,location.dir)
   index++;
   var command = commands[index];
   var newlocation = rover(command, location);
@@ -43,6 +44,14 @@ function isObstacle(newLocation ,obstacles) {
   }
 
   return false;
+}
+
+function checkInputFormat(x,y,dir){
+  const dirArray = ["N","W","E","S"]
+  x = typeof x  === "number" ;
+  y = typeof y === "number";
+  const inDir = (typeof dir === "string") && dirArray.includes(dir); 
+  if ((x & y & inDir) == false ) throw new Error("wrong input")
 }
 
 module.exports = {

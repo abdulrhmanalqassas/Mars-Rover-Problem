@@ -16,3 +16,9 @@ To run the tests:
 ```shell
 npm run test
 ```
+
+To run the index:
+```shell
+node ".\index.js"
+```
+ 
