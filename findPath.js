@@ -2,7 +2,7 @@ const { isObstacle } = require("./planet");
 const { rover } = require("./rover");
 const {Queue} =  require("./lib");
 
-function findBath(source, destination , obstacles) {
+function findPath(source, destination , obstacles=[]) {
   let q = new Queue();
   let explored = new Set();
   let memo = new Map();
@@ -14,7 +14,7 @@ function findBath(source, destination , obstacles) {
     explored.add(JSON.stringify(t));
 
     if (t.x == destination.x && t.y == destination.y) {
-      return true  + memo.get(JSON.stringify(t)) + JSON.stringify(t);
+      return true  +" path is:"+ memo.get(JSON.stringify(t)) + " end at: " + JSON.stringify(t);
     }
     
     if (( t.x >= 180 || t.x <= -180 ) & ( t.y >= 90 || t.y <= -90 )) {
@@ -48,4 +48,7 @@ function generateEdges(source, path ,obstacles) {
   });
 }
 
-console.log(findBath({ x: 1, y: 1, dir: "W" }, { x: 7, y: 4 }));
+
+module.exports = {
+  findPath: findPath,
+};
