@@ -12,5 +12,6 @@ describe("planet tests", () => {
     let expected = "(1, 1) NORTH STOPPED"
     expect(testStage).toStrictEqual(expected);
   });
+  
  
 });
