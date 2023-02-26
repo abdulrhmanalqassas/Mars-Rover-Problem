@@ -10,9 +10,15 @@ const directionsMap = {
   SOUTH: "S",
   WEST: "W",
 };
+const ReversedDirectionsMap = {
+  N: "NORTH",
+  E: "EAST",
+  S: "SOUTH",
+  W: "WEST",
+}
 function position(x=0, y=0, direction="NORTH") {
-  this.out = function () {
-    return `(${x}, ${y}) ${direction}`;
+  this.toString = function () {
+    return `(${x}, ${y}) ${ReversedDirectionsMap[direction]}`;
   };
   this.in = function () {
     return { x: x, y: y, dir: directionsMap[direction] };
