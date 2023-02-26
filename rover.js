@@ -21,20 +21,16 @@ function rover(command, location) {
 function move(command, direction) {
   var xIncrease = 0,
     yIncrease = 0;
-  switch (direction) {
-    case "N":
-      yIncrease = 1;
-      break;
-    case "E":
-      xIncrease = 1;
-      break;
-    case "S":
-      yIncrease = -1;
-      break;
-    case "W":
-      xIncrease = -1;
-      break;
-  }
+    const movesOnY = {
+      "N":1,
+      "S":-1,
+    }
+    const movesOnX = {
+      "E":1,
+      "W":-1,
+    }
+    yIncrease = movesOnY[direction] || 0;
+    xIncrease = movesOnX[direction] || 0;
   if (command === "B") {
     xIncrease *= -1;
     yIncrease *= -1;
