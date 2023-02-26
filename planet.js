@@ -3,14 +3,19 @@ const { position } = require("./position");
 
 
 let index = -1;
-// first we have current pos
-// call getNextPos(nexIndex) return nextPos
+/**
+ * follow path with or without obstacles  .
+ * @param {position} location
+ * @param {string} commands
+ * @param {Array} obstaclesArr
+ * */
+
+
 // check if this pos is obstacles -> true return current
 // else return nextPos
 
 function stage(location, commands , obstaclesArr=[]) {
   index++;
-  console.log(obstaclesArr)
   var command = commands[index];
   var newlocation = rover(command, location);
   let newPosition = new position(newlocation.x,newlocation.y,newlocation.dir)
@@ -20,12 +25,12 @@ function stage(location, commands , obstaclesArr=[]) {
     // return current location and ignore newlocation
     return currentPosition.toString() + " STOPPED"
   }
-  if (index > commands.length) {
+  if (index+1 >= commands.length) {
     index = -1;
     return newPosition.toString();
-
-  }
-  return stage(newlocation, commands,obstaclesArr);
+    
+  }else  return stage(newlocation, commands,obstaclesArr);
+ 
 }
 
 function isObstacle(newLocation ,obstacles) {

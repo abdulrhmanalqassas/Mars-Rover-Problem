@@ -1,9 +1,10 @@
 
 const directions = ["N", "E", "S", "W"];
 
-// start = {x:1,y:2,dir:"W"}
+
 
 function rover(command, location) {
+
   var tempLocation = {...location}
   var newX = tempLocation.x;
   var newY = tempLocation.y;
@@ -14,7 +15,10 @@ function rover(command, location) {
     newY = tempLocation.y + step.yIncrease;
   } else if (command === "L" || command === "R") {
     newDir = turn(command, tempLocation.dir);
-  } else  throw new Error('This command is not supported')
+  } else {
+ throw  Error('This command is not supported') 
+
+  } 
   return { x: newX, y: newY, dir: newDir };
 }
 
