@@ -13,8 +13,7 @@ describe("planet tests", () => {
     expect(testStage).toStrictEqual(expected);
   }); 
   test("stage with Error", () => {
-    
-    expect(() => stage({ x: 1, y: -2, dir: "N" },"X",[[1,2],[2,3]])).toThrow();
+    expect(() => stage({ x: 1, y: -2, dir: "N" },"X",[[1,2],[2,3]])).toThrow("you are using bad command");
     expect(() =>stage({ x: 1, y: -2, dir: "N" },"X",[[1,2],[2,3]])).toThrow(Error);
 
   }); 
