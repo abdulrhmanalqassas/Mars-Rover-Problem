@@ -2,37 +2,33 @@ const { rover } = require("./rover");
 const { position } = require("./position");
 
 
-var obstacles = [
-  [ 2, 2],
-  [1,2]
-];
-
 let index = -1;
 // first we have current pos
 // call getNextPos(nexIndex) return nextPos
 // check if this pos is obstacles -> true return current
 // else return nextPos
 
-function stage(location, commands , obstacles=[]) {
+function stage(location, commands , obstaclesArr=[]) {
   index++;
+  console.log(obstaclesArr)
   var command = commands[index];
   var newlocation = rover(command, location);
   let newPosition = new position(newlocation.x,newlocation.y,newlocation.dir)
   let currentPosition = new position(location.x,location.y,location.dir)
-  if (isObstacle(newlocation,obstacles)) {
+  if (isObstacle(newlocation,obstaclesArr)) {
     index = -1;
     // return current location and ignore newlocation
-    return currentPosition.toString() + " STOPED"
+    return currentPosition.toString() + " STOPPED"
   }
   if (index > commands.length) {
     index = -1;
     return newPosition.toString();
 
   }
-  return stage(newlocation, commands);
+  return stage(newlocation, commands,obstaclesArr);
 }
 
-function isObstacle(newLocation ,obstacles=[]) {
+function isObstacle(newLocation ,obstacles) {
   var locationArr = [newLocation.x, newLocation.y];
   for (var index = 0; index < obstacles.length; index++) {
     var stop = obstacles[index];
