@@ -12,4 +12,11 @@ describe("planet tests", () => {
     let expected = "(1, 1) NORTH STOPPED"
     expect(testStage).toStrictEqual(expected);
   }); 
+  test("stage with Error", () => {
+    
+    expect(() => stage({ x: 1, y: -2, dir: "N" },"X",[[1,2],[2,3]])).toThrow();
+    expect(() =>stage({ x: 1, y: -2, dir: "N" },"X",[[1,2],[2,3]])).toThrow(Error);
+
+  }); 
+  
 });
